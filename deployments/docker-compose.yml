@@ -1,0 +1,10 @@
+services:
+  cockroach:
+    image: cockroachdb/cockroach:latest
+    profiles:
+      - staging
+    command: start-single-node --insecure
+    restart: always
+    ports:
+      - "26257:26257" # SQL port
+      - "8080:8080" # admin UI

@@ -1,0 +1,18 @@
+roachmonitor/
+│
+├── cmd/
+│   └── roachmonitor/
+│       └── main.go
+│
+├── internal/
+│   ├── cockroach/
+│   └── snapshot/
+│
+├── deployments/
+│   └── docker-compose.yml
+│
+├── docs/
+│
+├── go.mod
+├── go.sum
+└── README.md
