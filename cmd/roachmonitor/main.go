@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/mikefrom1974/roachmonitor/internal/cockroach"
+	"github.com/mikefrom1974/roachmonitor/internal/snapshot"
 )
 
 func main() {
@@ -32,10 +33,10 @@ func main() {
 	}
 	defer db.Close()
 
-	var version string
-	if err := db.QueryRow(ctx, "SELECT version()").Scan(&version); err != nil {
+	snap, err := snapshot.CollectSnapshot(ctx, db)
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Connected to DB. Version: %s\n", version)
+	fmt.Printf("Connected to DB. \n Version: %s\n Latency: %v\n", snap.ClusterVersion, snap.ProbeLatency)
 }
